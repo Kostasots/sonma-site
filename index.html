@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sonma Thought Lab</title>
+<meta name="description" content="Sonma Thought Lab is a strategy and innovation practice that builds the tools most firms only recommend.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F2747;
+    --ink:#0A1A2F;
+    --gold:#C9A96B;
+    --gold-soft:#D8C199;
+    --marble:#E9E6E1;
+    --paper:#F7F5F1;
+    --paper-2:#F1EEE8;
+    --slate:#52616F;
+    --line:#DED9D1;
+
+    --serif:"Cinzel", Georgia, serif;
+    --sans:"Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --wrap:1140px;
+    --gutter:clamp(1.25rem, 5vw, 4rem);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--navy);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+
+  a{color:inherit}
+  img,svg{display:block}
+
+  /* ---------- Brand marks ---------- */
+  .mark{display:inline-flex;align-items:center;gap:.7em}
+  .mark .tri{flex:0 0 auto}
+  .mark .type{display:flex;flex-direction:column;line-height:1}
+  .mark .type .name{
+    font-family:var(--serif);
+    font-weight:600;
+    color:var(--navy);
+    letter-spacing:.14em;
+  }
+  .mark .rule{
+    display:flex;align-items:center;gap:.4em;margin:.28em 0;
+  }
+  .mark .rule::before,.mark .rule::after{content:"";height:1px;background:var(--gold);flex:1}
+  .mark .rule .dia{width:.34em;height:.34em;background:var(--gold);transform:rotate(45deg);flex:0 0 auto}
+  .mark .type .sub{
+    font-family:var(--sans);
+    font-weight:600;
+    color:var(--navy);
+    letter-spacing:.34em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,245,241,.82);
+    backdrop-filter:saturate(150%) blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.scrolled{border-bottom-color:var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.85rem}
+  .nav .mark .name{font-size:1.15rem}
+  .nav .mark .sub{font-size:.42rem}
+  .nav .tri{width:30px;height:30px}
+  nav.links{display:flex;align-items:center;gap:clamp(1rem,3vw,2.25rem)}
+  nav.links a{
+    text-decoration:none;font-weight:500;font-size:.9rem;letter-spacing:.02em;
+    color:var(--navy);padding-block:.35rem;position:relative;
+  }
+  nav.links a::after{
+    content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:var(--gold);
+    transition:right .25s ease;
+  }
+  nav.links a:hover::after,nav.links a:focus-visible::after{right:0}
+  nav.links a.cta{
+    background:var(--navy);color:var(--paper);border-radius:2px;
+    padding:.55rem 1.05rem;
+  }
+  nav.links a.cta::after{display:none}
+  nav.links a.cta:hover{background:var(--ink)}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;overflow:hidden;padding-block:clamp(3.5rem,9vw,7rem) clamp(3rem,7vw,5.5rem)}
+  .hero .bigtri{
+    position:absolute;right:-8%;top:50%;transform:translateY(-50%);
+    width:min(58vw,620px);opacity:.9;pointer-events:none;z-index:0;
+  }
+  .hero .inner{position:relative;z-index:1;max-width:34rem}
+  .hero .lockup{margin-bottom:clamp(1.75rem,4vw,2.75rem)}
+  .hero .lockup .name{font-size:clamp(2.4rem,7vw,3.6rem);letter-spacing:.16em}
+  .hero .lockup .sub{font-size:clamp(.6rem,1.7vw,.82rem)}
+  .hero .lockup .rule{margin:.5em 0}
+  .hero h1{
+    font-family:var(--sans);font-weight:600;
+    font-size:clamp(1.5rem,3.4vw,2.15rem);
+    line-height:1.22;letter-spacing:-.01em;margin:0 0 1.1rem;
+    max-width:20ch;color:var(--navy);
+  }
+  .hero p.lead{
+    font-size:clamp(1rem,1.6vw,1.12rem);color:var(--slate);
+    margin:0 0 2rem;max-width:46ch;line-height:1.75;
+  }
+  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:1.25rem}
+  .btn{
+    font-weight:600;font-size:.95rem;text-decoration:none;border-radius:2px;
+    padding:.8rem 1.5rem;display:inline-block;transition:background .2s ease,color .2s ease;
+  }
+  .btn.primary{background:var(--navy);color:var(--paper)}
+  .btn.primary:hover{background:var(--ink)}
+  .btn.ghost{
+    color:var(--navy);padding:.8rem 0;position:relative;
+  }
+  .btn.ghost::after{content:"";position:absolute;left:0;bottom:.45rem;width:100%;height:1.5px;background:var(--gold)}
+  .btn.ghost:hover{color:var(--gold)}
+
+  /* ---------- Diamond divider ---------- */
+  .divider{display:flex;align-items:center;gap:1.1rem;color:var(--gold);padding-block:0;margin-block:clamp(3rem,7vw,5rem)}
+  .divider::before,.divider::after{content:"";height:1px;background:var(--line);flex:1}
+  .divider .dia{width:9px;height:9px;background:var(--gold);transform:rotate(45deg);flex:0 0 auto}
+
+  /* ---------- Section scaffolding ---------- */
+  section{padding-block:0}
+  .kicker{
+    display:inline-flex;align-items:center;gap:.6em;
+    font-weight:600;font-size:.82rem;letter-spacing:.04em;color:var(--gold);
+    margin-bottom:.9rem;
+  }
+  .kicker .dia{width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+  .section-head{max-width:34rem;margin-bottom:clamp(2rem,4vw,2.75rem)}
+  .section-head h2{
+    font-family:var(--sans);font-weight:600;
+    font-size:clamp(1.5rem,3vw,2rem);line-height:1.2;letter-spacing:-.01em;margin:0 0 .85rem;
+  }
+  .section-head p{margin:0;color:var(--slate);font-size:1.05rem;max-width:52ch}
+
+  /* ---------- Tools ---------- */
+  .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1.25rem}
+  .tool{
+    background:var(--paper);border:1px solid var(--line);border-radius:4px;
+    padding:1.6rem 1.5rem 1.4rem;display:flex;flex-direction:column;min-height:100%;
+    transition:border-color .25s ease, transform .25s ease;position:relative;
+    border-top:3px solid var(--navy);
+  }
+  .tool:hover{border-color:var(--gold);border-top-color:var(--gold)}
+  .tool .status{
+    align-self:flex-start;font-size:.7rem;font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;padding:.28rem .6rem;border-radius:2px;margin-bottom:1rem;
+  }
+  .status.live{background:var(--navy);color:var(--paper)}
+  .status.testing{background:var(--marble);color:var(--navy);border:1px solid var(--line)}
+  .status.dev{background:transparent;color:var(--slate);border:1px dashed var(--line)}
+  .tool h3{font-family:var(--serif);font-weight:600;font-size:1.35rem;letter-spacing:.04em;margin:0 0 .6rem;color:var(--navy)}
+  .tool p{margin:0 0 1.3rem;color:var(--slate);font-size:.95rem;line-height:1.65;flex:1}
+  .tool a.open{
+    text-decoration:none;font-weight:600;font-size:.9rem;color:var(--navy);
+    align-self:flex-start;position:relative;padding-bottom:.2rem;
+  }
+  .tool a.open::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+  .tool:hover a.open::after,.tool a.open:focus-visible::after{transform:scaleX(1)}
+  .tool a.open[aria-disabled="true"]{color:var(--slate);cursor:default}
+  .tool a.open[aria-disabled="true"]::after{display:none}
+
+  /* ---------- Approach ---------- */
+  .approach{background:var(--navy);color:var(--paper);border-radius:6px;padding:clamp(2.25rem,5vw,3.5rem)}
+  .approach .kicker{color:var(--gold-soft)}
+  .approach h2{color:var(--paper)}
+  .approach .section-head p{color:rgba(247,245,241,.72)}
+  .triad{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:clamp(1.5rem,4vw,2.5rem);margin-top:2.5rem}
+  .step h3{
+    font-family:var(--serif);font-weight:500;font-size:1.4rem;letter-spacing:.08em;
+    margin:0 0 .7rem;color:var(--gold);display:flex;align-items:baseline;gap:.6rem;
+  }
+  .step h3 .tick{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);flex:0 0 auto}
+  .step p{margin:0;color:rgba(247,245,241,.82);font-size:.97rem;line-height:1.7}
+
+  /* ---------- Practice / contact ---------- */
+  .work{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,6vw,4.5rem);align-items:start}
+  @media (max-width:760px){.work{grid-template-columns:1fr}}
+  .tags{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.5rem}
+  .tags span{
+    border:1px solid var(--line);border-radius:2px;padding:.45rem .85rem;
+    font-size:.85rem;font-weight:500;color:var(--navy);background:var(--paper);
+  }
+  .inquiry{background:var(--marble);border-radius:6px;padding:clamp(1.75rem,4vw,2.5rem)}
+  .inquiry h3{font-family:var(--sans);font-weight:600;font-size:1.25rem;margin:0 0 .75rem;letter-spacing:-.01em}
+  .inquiry p{margin:0 0 1.5rem;color:var(--slate);font-size:.97rem}
+  .inquiry .btn.primary{width:100%;text-align:center;padding-inline:0}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:rgba(247,245,241,.75);margin-top:clamp(3.5rem,8vw,6rem);padding-block:clamp(2.5rem,5vw,3.5rem)}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;align-items:flex-start}
+  footer .mark .name,footer .mark .sub{color:var(--paper)}
+  footer .mark .rule::before,footer .mark .rule::after{background:var(--gold)}
+  footer .mark .name{font-size:1.1rem}
+  footer .mark .sub{font-size:.4rem}
+  .foot .col a{color:var(--gold-soft);text-decoration:none}
+  .foot .col a:hover{text-decoration:underline}
+  .foot .col{font-size:.9rem;line-height:1.9}
+  .foot .col .label{color:rgba(247,245,241,.5);font-size:.78rem;letter-spacing:.06em}
+  .foot .founder{font-family:var(--serif);letter-spacing:.05em;color:var(--paper);font-size:.95rem}
+  .legal{border-top:1px solid rgba(247,245,241,.12);margin-top:2.25rem;padding-top:1.5rem;font-size:.8rem;color:rgba(247,245,241,.5);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between}
+
+  /* ---------- Load motion (one orchestrated moment) ---------- */
+  @media (prefers-reduced-motion: no-preference){
+    .hero .bigtri{animation:triIn 1.2s cubic-bezier(.2,.7,.2,1) both}
+    .hero .lockup,.hero h1,.hero p.lead,.hero .actions{opacity:0;animation:rise .9s ease forwards}
+    .hero .lockup{animation-delay:.15s}
+    .hero h1{animation-delay:.32s}
+    .hero p.lead{animation-delay:.46s}
+    .hero .actions{animation-delay:.6s}
+    @keyframes triIn{from{opacity:0;transform:translateY(-50%) translateX(40px) rotate(-6deg)}to{opacity:.9;transform:translateY(-50%) translateX(0) rotate(0)}}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  }
+
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:1px}
+
+  @media (max-width:560px){
+    nav.links{gap:1rem}
+    nav.links a:not(.cta){display:none}
+    .hero .bigtri{opacity:.35}
+  }
+</style>
+</head>
+<body>
+
+<!-- Reusable marble triangle (used at several sizes) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="marbleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F6F4F0"/>
+      <stop offset="42%" stop-color="#E9E6E1"/>
+      <stop offset="78%" stop-color="#D3CDC2"/>
+      <stop offset="100%" stop-color="#BDB6A8"/>
+    </linearGradient>
+    <linearGradient id="marbleEdge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".9"/>
+      <stop offset="100%" stop-color="#9C9484" stop-opacity=".5"/>
+    </linearGradient>
+    <symbol id="tri" viewBox="0 0 100 90">
+      <polygon points="50,6 94,84 6,84" fill="none" stroke="url(#marbleGrad)" stroke-width="13" stroke-linejoin="round"/>
+      <polygon points="50,6 94,84 6,84" fill="none" stroke="url(#marbleEdge)" stroke-width="2" stroke-linejoin="round" opacity=".7"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header id="site-header">
+  <div class="wrap nav">
+    <a href="#top" class="mark" aria-label="Sonma Thought Lab home">
+      <svg class="tri" viewBox="0 0 100 90" aria-hidden="true"><use href="#tri"/></svg>
+      <span class="type">
+        <span class="name">SONMA</span>
+        <span class="rule"><span class="dia"></span></span>
+        <span class="sub">Thought&nbsp;Lab</span>
+      </span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="#tools">Tools</a>
+      <a href="#approach">Approach</a>
+      <a href="#work">Where we work</a>
+      <a class="cta" href="mailto:info@sonmathoughtlab.com?subject=Working%20with%20Sonma%20Thought%20Lab">Start a conversation</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="bigtri" viewBox="0 0 100 90" aria-hidden="true"><use href="#tri"/></svg>
+    <div class="wrap inner">
+      <div class="mark lockup">
+        <span class="type">
+          <span class="name">SONMA</span>
+          <span class="rule"><span class="dia"></span></span>
+          <span class="sub">Thought&nbsp;Lab</span>
+        </span>
+      </div>
+      <h1>We build the solutions most firms only recommend.</h1>
+      <p class="lead">Sonma Thought Lab is a strategy and innovation practice. We work with organizations to turn complex problems into clear, working tools — and the tools below are where that begins.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:info@sonmathoughtlab.com?subject=Working%20with%20Sonma%20Thought%20Lab">Start a conversation</a>
+        <a class="btn ghost" href="#tools">See the tools</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"><span class="dia"></span></div></div>
+
+  <!-- TOOLS -->
+  <section id="tools">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker"><span class="dia"></span>The tools</span>
+        <h2>Live products from the lab.</h2>
+        <p>Field hockey officiating is where we started. The same engine — schedules, people, and judgment under pressure — scales to any operation that runs the same way.</p>
+      </div>
+      <div class="tools-grid">
+
+        <article class="tool">
+          <span class="status dev">In development</span>
+          <h3>Coordinate</h3>
+          <p>Officiating operations, scheduled automatically. Upload a tournament and get conflict-aware assignments, sensible shifts, and a public schedule officials can search by name.</p>
+          <a class="open" href="#" aria-disabled="true">Coming soon</a>
+        </article>
+
+        <article class="tool">
+          <span class="status testing">In testing</span>
+          <h3>Umpire Assessment</h3>
+          <p>A field-ready assessment tool for umpire managers. Dual-umpire tracking, tap-to-tally zone maps on a real field, private notes, and one-tap export.</p>
+          <a class="open" href="#">Open the tool</a>
+        </article>
+
+        <article class="tool">
+          <span class="status live">Live</span>
+          <h3>VU Review Log</h3>
+          <p>A guided wizard for video umpires. Referral tracking, auto-generated read-aloud scripts, and email export — built for the iPad on the desk.</p>
+          <a class="open" href="#">Open the tool</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"><span class="dia"></span></div></div>
+
+  <!-- APPROACH -->
+  <section id="approach">
+    <div class="wrap">
+      <div class="approach">
+        <div class="section-head">
+          <span class="kicker"><span class="dia"></span>The approach</span>
+          <h2>Three points. One line from problem to proof.</h2>
+          <p>Most work stalls in the gap between a strategy and a working thing. We close it.</p>
+        </div>
+        <div class="triad">
+          <div class="step">
+            <h3><span class="tick"></span>Frame</h3>
+            <p>We map the real problem, not the symptom — the constraints, the people, and the way work actually moves before anyone writes a line of anything.</p>
+          </div>
+          <div class="step">
+            <h3><span class="tick"></span>Build</h3>
+            <p>Then we build. Working software and clear process, in your hands in weeks — not a deck that describes what someone else could make.</p>
+          </div>
+          <div class="step">
+            <h3><span class="tick"></span>Prove</h3>
+            <p>And we measure it. If it doesn't move a number that matters to you, it isn't finished. Impact is the deliverable, not the report.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"><span class="dia"></span></div></div>
+
+  <!-- WHERE WE WORK / CONTACT -->
+  <section id="work">
+    <div class="wrap work">
+      <div>
+        <span class="kicker"><span class="dia"></span>Where we work</span>
+        <h2 style="font-family:var(--sans);font-weight:600;font-size:clamp(1.5rem,3vw,2rem);line-height:1.2;letter-spacing:-.01em;margin:0 0 .85rem;">Looking for someone who can help?</h2>
+        <p style="margin:0;color:var(--slate);font-size:1.05rem;max-width:52ch;">Twenty years across healthcare technology, financial services, pharma and medical devices, cloud and AI, and sports administration. If your problem lives at the seam between strategy and execution, that's our home ground.</p>
+        <div class="tags">
+          <span>Enterprise transformation</span>
+          <span>Program &amp; project management</span>
+          <span>Cloud &amp; AI on AWS</span>
+          <span>Process design</span>
+          <span>Officiating operations</span>
+        </div>
+      </div>
+      <aside class="inquiry">
+        <h3>Tell us what you're working on.</h3>
+        <p>A short note about the problem is enough to start. We'll tell you honestly whether we're the right people for it.</p>
+        <a class="btn primary" href="mailto:info@sonmathoughtlab.com?subject=A%20problem%20I%27m%20working%20on">Send a note</a>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="col">
+        <a href="#top" class="mark" aria-label="Sonma Thought Lab">
+          <svg class="tri" style="width:34px;height:34px" viewBox="0 0 100 90" aria-hidden="true"><use href="#tri"/></svg>
+          <span class="type">
+            <span class="name">SONMA</span>
+            <span class="rule"><span class="dia"></span></span>
+            <span class="sub">Thought&nbsp;Lab</span>
+          </span>
+        </a>
+      </div>
+      <div class="col">
+        <div class="label">Contact</div>
+        <a href="mailto:info@sonmathoughtlab.com">info@sonmathoughtlab.com</a><br>
+        Columbus, Ohio
+      </div>
+      <div class="col">
+        <div class="label">Founder</div>
+        <span class="founder">Constantine Soteriades</span>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; 2026 Sonma Thought Lab. All rights reserved.</span>
+      <span>Strategy &amp; innovation, built to ship.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hairline under the sticky header once the hero scrolls past.
+  const header = document.getElementById('site-header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+</script>
+</body>
+</html>
