@@ -48,9 +48,9 @@
   img,svg{display:block}
 
   /* ---------- Brand marks ---------- */
-  .mark{display:inline-flex;align-items:center;gap:.7em}
+  .mark{display:inline-flex;align-items:center;gap:.7em;text-decoration:none}
   .mark .tri{flex:0 0 auto}
-  .mark .type{display:flex;flex-direction:column;line-height:1}
+  .mark .type{display:flex;flex-direction:column;line-height:1;text-align:center}
   .mark .type .name{
     font-family:var(--serif);
     font-weight:600;
@@ -210,7 +210,7 @@
   /* ---------- Footer ---------- */
   footer{background:var(--ink);color:rgba(247,245,241,.75);margin-top:clamp(3.5rem,8vw,6rem);padding-block:clamp(2.5rem,5vw,3.5rem)}
   .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;align-items:flex-start}
-  footer .mark .name,footer .mark .sub{color:var(--paper)}
+  footer .mark .type .name,footer .mark .type .sub{color:var(--paper)}
   footer .mark .rule::before,footer .mark .rule::after{background:var(--gold)}
   footer .mark .name{font-size:1.1rem}
   footer .mark .sub{font-size:.4rem}
