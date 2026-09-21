@@ -49,7 +49,7 @@
 
   /* ---------- Brand marks ---------- */
   .mark{display:inline-flex;align-items:center;gap:.7em;text-decoration:none}
-  .mark .tri{flex:0 0 auto}
+  .mark .tri{flex:0 0 auto;color:var(--navy)}
   .mark .type{display:flex;flex-direction:column;line-height:1;text-align:center}
   .mark .type .name{
     font-family:var(--serif);
@@ -104,7 +104,7 @@
   .hero{position:relative;overflow:hidden;padding-block:clamp(3.5rem,9vw,7rem) clamp(3rem,7vw,5.5rem)}
   .hero .bigtri{
     position:absolute;right:-8%;top:50%;transform:translateY(-50%);
-    width:min(58vw,620px);opacity:.9;pointer-events:none;z-index:0;
+    width:min(58vw,620px);opacity:.09;color:var(--navy);pointer-events:none;z-index:0;
   }
   .hero .inner{position:relative;z-index:1;max-width:34rem}
   .hero .lockup{margin-bottom:clamp(1.75rem,4vw,2.75rem)}
@@ -211,6 +211,7 @@
   footer{background:var(--ink);color:rgba(247,245,241,.75);margin-top:clamp(3.5rem,8vw,6rem);padding-block:clamp(2.5rem,5vw,3.5rem)}
   .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem;align-items:flex-start}
   footer .mark .type .name,footer .mark .type .sub{color:var(--paper)}
+  .foot .mark .tri{color:var(--marble)}
   footer .mark .rule::before,footer .mark .rule::after{background:var(--gold)}
   footer .mark .name{font-size:1.1rem}
   footer .mark .sub{font-size:.4rem}
@@ -238,28 +239,17 @@
   @media (max-width:560px){
     nav.links{gap:1rem}
     nav.links a:not(.cta){display:none}
-    .hero .bigtri{opacity:.35}
+    .hero .bigtri{opacity:.05}
   }
 </style>
 </head>
 <body>
 
-<!-- Reusable marble triangle (used at several sizes) -->
+<!-- Reusable capital-delta mark (color set per context via currentColor) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="marbleGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F6F4F0"/>
-      <stop offset="42%" stop-color="#E9E6E1"/>
-      <stop offset="78%" stop-color="#D3CDC2"/>
-      <stop offset="100%" stop-color="#BDB6A8"/>
-    </linearGradient>
-    <linearGradient id="marbleEdge" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".9"/>
-      <stop offset="100%" stop-color="#9C9484" stop-opacity=".5"/>
-    </linearGradient>
     <symbol id="tri" viewBox="0 0 100 90">
-      <polygon points="50,6 94,84 6,84" fill="none" stroke="url(#marbleGrad)" stroke-width="13" stroke-linejoin="round"/>
-      <polygon points="50,6 94,84 6,84" fill="none" stroke="url(#marbleEdge)" stroke-width="2" stroke-linejoin="round" opacity=".7"/>
+      <path d="M50,6 L94,84 L6,84 Z M46,35 L71,77 L14,77 Z" fill-rule="evenodd" fill="currentColor"/>
     </symbol>
   </defs>
 </svg>
@@ -296,8 +286,8 @@
           <span class="sub">Thought&nbsp;Lab</span>
         </span>
       </div>
-      <h1>We build the solutions most firms only recommend.</h1>
-      <p class="lead">Sonma Thought Lab is a strategy and innovation practice. We work with organizations to turn complex problems into clear, working tools — and the tools below are where that begins.</p>
+      <h1>We make complex operations run better — and build the tools that get them there.</h1>
+      <p class="lead">Sonma Thought Lab is a strategy and innovation practice. We find where work is slow, manual, or frustrating, and we fix it — designing and building the software when that's what the job needs, not just recommending it.</p>
       <div class="actions">
         <a class="btn primary" href="mailto:info@sonmathoughtlab.com?subject=Working%20with%20Sonma%20Thought%20Lab">Start a conversation</a>
         <a class="btn ghost" href="#tools">See the tools</a>
@@ -313,7 +303,7 @@
       <div class="section-head">
         <span class="kicker"><span class="dia"></span>The tools</span>
         <h2>Live products from the lab.</h2>
-        <p>Field hockey officiating is where we started. The same engine — schedules, people, and judgment under pressure — scales to any operation that runs the same way.</p>
+        <p>Working in organized athletics — club, collegiate, and international — we kept spotting the same thing: places where operations could run leaner, and where the people doing the work deserved a better experience. So we started building. Field hockey is where we began, but the engine underneath — schedules, people, and judgment under pressure — fits any sport, event, or operation that runs the same way.</p>
       </div>
       <div class="tools-grid">
 
@@ -327,14 +317,14 @@
         <article class="tool">
           <span class="status testing">In testing</span>
           <h3>Umpire Assessment</h3>
-          <p>A field-ready assessment tool for umpire managers. Dual-umpire tracking, tap-to-tally zone maps on a real field, private notes, and one-tap export.</p>
+          <p>Built with USA Field Hockey to replace a cumbersome workflow of juggling tabs in an Excel workbook. A field-ready assessment tool for umpire managers and evaluators: dual-umpire tracking, tap-to-tally zone maps on a real field to show an umpire exactly where problems cluster, private notes, and one-tap export — designed to make the evaluator's job faster and better. Adaptable to other sports.</p>
           <a class="open" href="#">Open the tool</a>
         </article>
 
         <article class="tool">
           <span class="status live">Live</span>
           <h3>VU Review Log</h3>
-          <p>A guided wizard for video umpires. Referral tracking, auto-generated read-aloud scripts, and email export — built for the iPad on the desk.</p>
+          <p>Sticking to the FIH Video Umpire briefing script is hard under pressure — especially when English isn't the official's first language, and again in US collegiate games, where being on the clock adds its own strain. So we built a guided wizard for VUs: referral tracking, auto-generated read-aloud scripts, and one-tap email export to the umpire manager or conference supervisor. Runs on phone, tablet, or laptop.</p>
           <a class="open" href="https://kostasots.github.io/VUScript/" target="_blank" rel="noopener">Open the tool</a>
         </article>
 
@@ -356,11 +346,11 @@
         <div class="triad">
           <div class="step">
             <h3><span class="tick"></span>Frame</h3>
-            <p>We map the real problem, not the symptom — the constraints, the people, and the way work actually moves before anyone writes a line of anything.</p>
+            <p>We map the real problem, not the symptom — the constraints, the people, and the way work actually moves, before anyone reaches for a fix.</p>
           </div>
           <div class="step">
-            <h3><span class="tick"></span>Build</h3>
-            <p>Then we build. Working software and clear process, in your hands in weeks — not a deck that describes what someone else could make.</p>
+            <h3><span class="tick"></span>Solve</h3>
+            <p>Then we design the fix that fits. Sometimes that's software we build ourselves; sometimes it's a process change, the right vendor, or a partnership. We're loyal to the outcome, not to any one kind of solution.</p>
           </div>
           <div class="step">
             <h3><span class="tick"></span>Prove</h3>
